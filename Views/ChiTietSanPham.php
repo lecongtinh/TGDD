@@ -26,7 +26,7 @@
 	$spct = $sp->getChiTietSanPham($id);
 	$row = mysql_fetch_array($spct);
 ?>
-<div class="wrap3">
+<div class="wrap3" id="cotphai">
     <div class="benphai">
     <div class="box1">
     <div class="box-heading1">Chi tiết sản phẩm  <?php echo $row["SP_TEN"]; ?></div>

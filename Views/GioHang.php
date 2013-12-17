@@ -31,10 +31,10 @@
 		});
     });
 </script>
-<div class="wrap3">
+<div class="wrap3" id="cotphai">
     <div class="benphai">
         <div class="box1">
-            <div class="box-heading1">Giỏ hàng của <?php echo $_SESSION["email"]; ?></div>
+            <div class="box-heading1">Giỏ hàng của <?php if(isset($_SESSION["mail"])) echo $_SESSION["email"]; else echo "bạn"?></div>
                 <form action="" method="post">
                     <table width="750" height="200" border="0" bgcolor="#FFFFFF">
                         <tr>
@@ -88,12 +88,12 @@
                     </table>
                 </form>
                 <?php
-	}else{
+	}else{//Hien thi khi khong co san pham nao trong gio hang
 		?>
-        	<div class="wrap3">
+        	<div class="wrap3" id="cotphai">
             <div class="benphai">
                 <div class="box1">
-                    <div class="box-heading1">Giỏ hàng của <?php echo $_SESSION["email"]; ?></div>
+                   <div class="box-heading1">Giỏ hàng của <?php if(isset($_SESSION["mail"])) echo $_SESSION["email"]; else echo "bạn"?></div>
         
         <?php
 		

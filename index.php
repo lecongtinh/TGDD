@@ -23,7 +23,7 @@
         </div>-->
         <div id="wrapper">
             <?php
-                include("Views/header.php");
+                include("Views/Header.php");
                 include("Views/DanhMuc.php");
                 switch($nav){
                     case 'trangchu.html' : 

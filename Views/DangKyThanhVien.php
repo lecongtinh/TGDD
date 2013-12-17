@@ -89,7 +89,7 @@
 		document.getElementById("tbsdt").innerHTML = "";		
 	}
 </script>
-<div class="wrap3">
+<div class="wrap3" id="cotphai">
     <div class="benphai">
     <div class="box1">
     <div class="box-heading1">Đăng ký thành viên</div>

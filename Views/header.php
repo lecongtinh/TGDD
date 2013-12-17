@@ -31,6 +31,45 @@
 			}
 		})
     });
+	//Goi y san pham
+	$( "#filter_name" ).autocomplete({
+		source: "Controls/autoTimSanPham.php",minLength: 2
+	});
+	function find_sanpham() //ham lay thong tin ten cua can bo bang ma so
+	{
+		keyword = document.getElementById('filter_name').value;
+		if(keyword == "Tìm kiếm") {
+			document.getElementById("filter_name").value = ""; 
+			return false;
+		}
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		  { //code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  { //code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			 if(xmlhttp.responseText==''){
+				alert('Lỗi');
+			 }
+			 else{             
+					document.getElementById('filter_name').innerHTML =xmlhttp.responseText;
+			   }
+			   xmlhttp = null;          
+			   
+			}
+		  }
+		 xmlhttp.open("GET","&keyword="+keyword+"&q="+Math.random(),true);
+		 xmlhttp.send();
+		
+		return false;
+	}    
 </script>
 <div id="wrap3">
 	<div id="header1">
@@ -41,7 +80,7 @@
         
     	<div id="search">
         <div class="button-search"></div>
-        	<input type="text" name="filter_name" id="filter_name" value=""/>
+        	<input type="text" name="filter_name" id="filter_name" value="Tìm kiếm" onclick="return find_sanpham()"/>
       	</div>
         
          <div id="welcome">

@@ -9,7 +9,7 @@
 		$ds = $tv->ThongTinThanhVien($email);
 		$row = mysql_fetch_array($ds);
 	?>
-	<div class="wrap3">
+	<div class="wrap3" id="cotphai">
 		<div class="benphai">
 		<div class="box1">
 		<div class="box-heading1">Thông tin thành viên</div>
