@@ -23,7 +23,7 @@
 		}else 
 			$nav="column_right";
 		$direct = "index.php?menu="; 
-		include("Views/column_left.php");
+		include("Views/MenuTrai.php");
 	?>	
     <div id="main-content">
     	<h2>Xin chào Quản trị viên</h2>
@@ -33,16 +33,17 @@
 			
 			switch($nav){
 				case 'category':if(is_file('Views/category.php')) include('Views/category.php'); break;
-				case 'add_product':if(is_file('Views/add_product.php')) include('Views/add_product.php'); break;
-				case 'order_product':if(is_file('Views/order_product.php')) include('Views/order_product.php'); break;
-				case 'column_left':if(is_file('Views/column_left.php')) include('Views/column_left.php'); break;
+				case 'quanlychung':if(is_file('Views/QuanLyChung.php')) include('Views/QuanLyChung.php'); break;
+				case 'quanlysanpham':if(is_file('Views/QuanLySanPham.php')) include('Views/QuanLySanPham.php'); break;
+				case 'quanlydathang':if(is_file('Views/QuanLyDatHang.php')) include('Views/QuanLyDatHang.php'); break;
+				case 'column_left':if(is_file('Views/MenuTrai.php')) include('Views/MenuTrai.php'); break;
 				case 'menu_header':if(is_file('Views/header.php')) include('Views/header.php'); break;
 				case 'menu_footer':if(is_file('Views/footer.php')) include('Views/footer.php'); break;
 				case 'slideshow':if(is_file('Views/slideshow.php')) include('Views/slideshow.php'); break;
-				case 'admin':if(is_file('Views/admin.php')) include('Views/admin.php'); break;
+				case 'quanlynguoidung':if(is_file('Views/QuanLyNguoiDung.php')) include('Views/QuanLyNguoiDung.php'); break;
 				case 'dangxuat':if(is_file('Controllers/DangXuatNhanVien.php')) include('Controllers/DangXuatNhanVien.php'); break;
 				
-				default: include('Views/column_right.php');break;
+				default: include('Views/QuanLyChung.php');break;
 			}      
 		?>	
         	

@@ -71,7 +71,7 @@
             </table>
 		</div> <!-- End #tab1 -->
         <div class="tab-content" id="tab2"> 
-            <form action="add_product.php" method="post">
+            <form action="QuanLySanPham.php" method="post">
                  <table align="center" width="100%">
                     <tr>
                         <td width="65%">
@@ -140,7 +140,7 @@
         </form>				
     	</div> <!-- End #tab2 --> 
         <div class="tab-content" id="tab3"> 
-            <form action="add_product.php" method="post">
+            <form action="QuanLySanPham.php" method="post">
                  <table align="center" width="100%">
                     <tr>
                         <td width="50%">

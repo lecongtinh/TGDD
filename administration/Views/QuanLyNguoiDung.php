@@ -59,7 +59,7 @@
     
     <div class="tab-content" id="tab2">
     
-        <form action="admin.php" method="post">
+        <form action="QuanLyNguoiDung.php" method="post">
             
             <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                 <table>

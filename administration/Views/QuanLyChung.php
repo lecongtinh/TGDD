@@ -17,19 +17,43 @@
             var id = $(this).attr("id");
 			$("#hoten_"+id).hide();
 			$("#hoten_input_"+id).show();
+			$("#email_"+id).hide();
+			$("#email_input_"+id).show();
+			$("#sdt_"+id).hide();
+			$("#sdt_input_"+id).show();
+			$("#ghichu_"+id).hide();
+			$("#ghichu_input_"+id).show();
+			$("#tt_dh_"+id).hide();
+			$("#tt_dh_input_"+id).show();
         }).change(function(e) {
             var id = $(this).attr("id");
 			var hoten = $("#hoten_input_"+id).val();
-			var data = 'id='+id+'&hoten='+hoten;
+			var email = $("#email_input_"+id).val();
+			var sdt = $("#sdt_input_"+id).val();
+			var ghichu = $("#ghichu_input_"+id).val();
+			var tt_dh = $("#tt_dh_input_"+id).val();
+			var data = 'id='+id+'&tt_dh='+tt_dh+'&hoten='+hoten+'&email='+email+'&sdt='+sdt+'&ghichu='+ghichu;
 			$.ajax({
 				type: "POST",
 				url: "Controllers/AjaxDatHang.php",
 				data: data,
 				cache: false,
 				success: function(){
+					$("#tt_dh_"+id).show();
+					$("#tt_dh_input_"+id).hide();
+					$("#tt_dh_"+id).html(tt_dh);
 					$("#hoten_"+id).show();
 					$("#hoten_input_"+id).hide();
 					$("#hoten_"+id).html(hoten);
+					$("#email_"+id).show();
+					$("#email_input_"+id).hide();
+					$("#email_"+id).html(email);
+					$("#sdt_"+id).show();
+					$("#sdt_input_"+id).hide();
+					$("#sdt_"+id).html(sdt);
+					$("#ghichu_"+id).show();
+					$("#ghichu_input_"+id).hide();
+					$("#ghichu_"+id).html(ghichu);
 				}
 			});
         });;
@@ -37,7 +61,9 @@
 </script>
 <?php
 	include_once($_SERVER['DOCUMENT_ROOT'].'/TGDD/administration/Models/DatHang.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/TGDD/administration/Models/TrangThaiDatHang.php');
 	$dh = new DatHang();
+	$tt_dh = new TrangThaiDatHang();
 	//xac dinh bao nhieu dong
 	$display = 5;
 	 // tinh tong so trang can hien thi
@@ -53,6 +79,7 @@
 	}
 	$start = (isset($_GET['start']) && (int)$_GET['start']>=0) ? $_GET['start'] : 0;
 	$result = $dh->thongTinDatHang($start, $display);
+	$resul_ttdh = $tt_dh->getTTDatHang();
 ?>			
 <div class="clear"></div>
 	<div class="content-box"><!-- Start Content Box -->
@@ -100,21 +127,35 @@
                         <tr id="<?php echo $row["DH_ID"]?>" class="edit_dh">
                             <td><input type="checkbox" /></td>
                             <td><?php echo $row["DH_ID"]?></td>
-                            <td><?php if($row["TT_DH_ID"] == 1) echo "Chờ xử lý"; else echo "Đã xử lý";?></td>
+                            <td>
+								<span id="tt_dh_<?php echo $row["DH_ID"]; ?>"><?php echo $row["TT_DH_TEN"]; ?></span>
+                                <select id="tt_dh_input_<?php echo $row["DH_ID"]; ?>" hidden="true">
+                                  <option value="1">Hủy đặt hàng</option>
+                                  <option value="2">Đã chuyển hàng</option>
+                                  <option value="3">Chờ xử lý</option>
+                                </select>
+                            </td>
                             <td>
                             	<span id="hoten_<?php echo $row["DH_ID"]; ?>"><?php echo $row["HOTEN"]; ?></span>
                                 <input hidden="true" id="hoten_input_<?php echo $row["DH_ID"]; ?>" type="text" value="<?php echo $row["HOTEN"]; ?>"  />
 								
                             </td>
-                            <td><?php echo $row["EMAIL"]?></td>
-                            <td><?php echo $row["SDT"]?></td>
-                            <td><?php echo $row["GHICHU"]?></td>
+                            <td>
+								<span id="email_<?php echo $row["DH_ID"]; ?>"><?php echo $row["EMAIL"]?></span>
+                                <input hidden="true" id="email_input_<?php echo $row["DH_ID"]; ?>" type="text" value="<?php echo $row["EMAIL"]; ?>" />
+                            </td>
+                            <td>
+								<span id="sdt_<?php echo $row["DH_ID"]; ?>"><?php echo $row["SDT"]?></span>
+                                <input hidden="true" id="sdt_input_<?php echo $row["DH_ID"]; ?>" type="text" value="<?php echo $row["SDT"]; ?>" />
+                            </td>
+                            <td>
+								<span id="ghichu_<?php echo $row["DH_ID"]; ?>"><?php echo $row["GHICHU"]?></span>
+                                <input hidden="true" id="ghichu_input_<?php echo $row["DH_ID"]; ?>" type="text" value="<?php echo $row["GHICHU"]; ?>" />
+                            </td>
                             <td><?php echo $row["TONGTIEN"]?></td>
                             <td>
                                 <!-- Icons -->
-                                 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit"/></a>
                                  <a href="#" title="Delete"><input type="image" src="resources/images/icons/cross.png" value="<?php echo $row["DH_ID"]?>" id="delete"/></a>
-                                 <!--<a href="<?php ?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" id="xoa"/><input type="hidden" value="<?php echo $row["DH_ID"]?>" id="xoa"/></a></a>--> 
                             </td>
                         </tr>
                 	<?php } ?>
